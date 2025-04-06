@@ -6,15 +6,13 @@ from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-# 🛠️ Replace these values with your actual database credentials
 DATABASE_URL = "postgresql://postgres:admin@localhost:5433/movies"
 
-# SQLAlchemy setup
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
-# 🎬 Movie model
+
 class Movie(Base):
     __tablename__ = "movies"
     id = Column(Integer, primary_key=True, index=True)
@@ -25,7 +23,7 @@ class Movie(Base):
 
 Base.metadata.create_all(bind=engine)
 
-# 🧾 Pydantic schemas
+
 class MovieIn(BaseModel):
     title: str
     release_year: Optional[int]
